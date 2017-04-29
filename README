@@ -1,5 +1,3 @@
-For information regarding this software visit my homepage:
-
-http://home.arcor.de/markusheinz/
-
-Markus Heinz
+Updated version of http://blackfrog.telsh.net/epson_setup.html
+Now requires gtk+ 3.0, gtkmm 3.0 and libsigc++ 3.0
+Only changed the GUI framework, command setup code is the same
