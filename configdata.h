@@ -1,16 +1,18 @@
 #ifndef CONFIGDATA_H
 #define CONFIGDATA_H
+#include <string>
 
 class ConfigData {
 public: 
-  ConfigData(const char *c, int q, int t, int ci);
-  ~ConfigData();
-  char *getData();
-  const char *getCommand();
+    ConfigData(const std::string pc, int q, int t, int c);
+    ~ConfigData();
+    std::string getData();
+    const std::string getCommand();
+
 private:
-  const char *printcommand;
-  int quality, typeface, cpi;
-  char sequence[8];
+    const std::string printcommand;
+    int quality, typeface, cpi;
+    std::string sequence;
 };
 
 #endif

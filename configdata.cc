@@ -1,29 +1,35 @@
 #include "configdata.h"
 
-ConfigData::ConfigData(const char *pc, int q, int t, int c){
-  printcommand = pc;
-  quality = q;
-  typeface = t;
-  cpi = c;
+ConfigData::ConfigData(const std::string pc, int q, int t, int c) :
+    printcommand(pc), 
+    quality(q), 
+    typeface(t), 
+    cpi(c),
+    sequence("")
+{
+
 }
+
 ConfigData::~ConfigData(){
 
 }
-char *ConfigData::getData() {
-  sequence[0] = sequence[3] = sequence[6] = 27;
-  sequence[1] = 'x'; sequence[4] = 'k'; sequence[8] = 0;
-  sequence[2] = '0' + quality;
-  sequence[5] = '0' + typeface;
-  switch (cpi) {
-  case 0:
-    sequence[7] = 'P';
-    break;
-  case 1:
-    sequence[7] = 'M';
-    break;
-  }
-  return sequence;
+
+std::string ConfigData::getData() {
+    const char escapeChar = 27;
+    sequence += escapeChar;
+    sequence += 'x';  
+    sequence += '0' + quality;
+
+    sequence += escapeChar;
+    sequence += 'k';
+    sequence += '0' + typeface;
+
+    sequence += escapeChar;
+    sequence += cpi ? 'M' : 'P';
+
+    return sequence;
 }
-const char *ConfigData::getCommand() {
-  return printcommand;
+
+const std::string ConfigData::getCommand() {
+    return printcommand;
 }
